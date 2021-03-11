@@ -73,7 +73,6 @@ const getOrganisation = (req, res) => {
   Organisation.get(id)
     .getJoin()
     .then((data) => {
-      data = data.filter((item) => item.role !== "Admin");
       res.send({ success: true, data });
     })
     .catch((err) => {
@@ -85,9 +84,12 @@ const getOrganisation = (req, res) => {
 const searchOrganisation = (req, res) => {
   let query = req.query.query;
 
-  Organisation.orderBy(r.desc("dateRequested"))
+  Organisation.orderBy(r.desc("createdAt"))
     .filter((organisation) =>
-      organisation("name").match(query).or(organisation("id").match(query))
+      organisation("name")
+        .match(query)
+        .or(organisation("description").match(query))
+        .or(organisation("id").match(query))
     )
     .getJoin()
     .then((data) => {

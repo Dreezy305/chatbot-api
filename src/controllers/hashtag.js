@@ -12,9 +12,8 @@ const totalCount = async () => {
 };
 
 const newHashtag = (req, res) => {
-  Hashtag.filter({ email: req.body.email }).then((val) => {
+  Hashtag.filter({ link: req.body.link }).then((val) => {
     if (val.length === 0) {
-      req.body.slug = slug();
       let hashtag = new Hashtag(req.body);
       hashtag
         .save()
@@ -25,7 +24,7 @@ const newHashtag = (req, res) => {
     } else {
       res.send({
         success: false,
-        err: "Duplicate entry. Email already exists!",
+        err: "Duplicate entry. Hashtag already exists!",
       });
     }
   });
@@ -70,7 +69,6 @@ const getHashtag = (req, res) => {
   const id = req.params.id;
   Hashtag.get(id)
     .then((data) => {
-      data = data.filter((item) => item.role !== "Admin");
       res.send({ success: true, data });
     })
     .catch((err) => {
@@ -82,13 +80,12 @@ const getHashtag = (req, res) => {
 const searchHashtag = (req, res) => {
   let query = req.query.query;
 
-  Hashtag.orderBy(r.desc("dateRequested"))
+  Hashtag.orderBy(r.desc("createdAt"))
     .filter((hashtag) =>
-      hashtag("name")
+      hashtag("id")
         .match(query)
-        .or(hashtag("email").match(query))
-        .or(hashtag("department").match(query))
-        .or(hashtag("role").match(query))
+        .or(hashtag("link").match(query))
+        .or(hashtag("content").match(query))
     )
     .getJoin()
     .then((data) => {

@@ -23,6 +23,7 @@ const Organisation = thinky.createModel("organisations", {
   id: type.string(),
   name: type.string(),
   description: type.string(),
+  slug: type.string(),
   userId: type.string(),
   createdAt: type.date().default(r.now),
   updatedAt: type.date().default(r.now),
@@ -56,10 +57,10 @@ const Hashtag = thinky.createModel("hashtags", {
 });
 
 // Associations
-User.hasMany(Organisation, "companies", "userId", "id");
-Organisation.belongsTo(Campaign, "campaigns", "organisationId", "id");
-Campaign.belongsTo(Tweet, "tweets", "campaignId", "id");
-Campaign.belongsTo(Hashtag, "hashtags", "campaignId", "id");
+User.hasMany(Organisation, "companies", "id", "userId");
+Organisation.hasMany(Campaign, "campaigns", "id", "organisationId");
+Campaign.hasMany(Tweet, "tweets", "id", "campaignId");
+Campaign.hasMany(Hashtag, "hashtags", "id", "campaignId");
 
 // User indices
 User.ensureIndex("id");
@@ -75,6 +76,7 @@ User.ensureIndex("updatedAt");
 //Organisation indices
 Organisation.ensureIndex("id");
 Organisation.ensureIndex("name");
+Organisation.ensureIndex("slug");
 Organisation.ensureIndex("userId");
 Organisation.ensureIndex("createdAt");
 Organisation.ensureIndex("updatedAt");
@@ -82,6 +84,7 @@ Organisation.ensureIndex("updatedAt");
 //Campaign indices
 Campaign.ensureIndex("id");
 Campaign.ensureIndex("name");
+Campaign.ensureIndex("slug");
 Campaign.ensureIndex("organisationId");
 Campaign.ensureIndex("createdAt");
 Campaign.ensureIndex("updatedAt");

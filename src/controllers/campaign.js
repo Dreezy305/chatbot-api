@@ -60,7 +60,6 @@ const getCampaign = (req, res) => {
   const id = req.params.id;
   Campaign.get(id)
     .then((data) => {
-      data = data.filter((item) => item.role !== "Admin");
       res.send({ success: true, data });
     })
     .catch((err) => {
@@ -72,13 +71,12 @@ const getCampaign = (req, res) => {
 const searchCampaign = (req, res) => {
   let query = req.query.query;
 
-  Campaign.orderBy(r.desc("dateRequested"))
+  Campaign.orderBy(r.desc("createdAt"))
     .filter((campaign) =>
       campaign("name")
         .match(query)
-        .or(campaign("email").match(query))
-        .or(campaign("department").match(query))
-        .or(campaign("role").match(query))
+        .or(campaign("description").match(query))
+        .or(campaign("id").match(query))
     )
     .getJoin()
     .then((data) => {

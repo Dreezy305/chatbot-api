@@ -91,6 +91,7 @@ const searchUser = (req, res) => {
         .match(query)
         .or(user("email").match(query))
         .or(user("role").match(query))
+        .or(user("id").match(query))
     )
     .then((data) => {
       res.send({ success: true, data });
