@@ -8,8 +8,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const logger = require("../util/log");
 const routes = require("../routes");
-const cron = require("node-cron");
-const { dealerJobs } = require("../controllers/job");
 
 //Routing
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,11 +50,6 @@ app.use((err, req, res, next) => {
 
 app.use((req, res) => {
   res.status(404).send({ err: "Oops! Page not found or has been deleted." });
-});
-
-cron.schedule("*/15 * * * *", () => {
-  console.log("Starting cron....");
-  dealerJobs();
 });
 
 module.exports = app;

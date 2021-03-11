@@ -5,8 +5,8 @@ const crypto = require("crypto");
 
 const slug = () => {
   return (
-    Math.random().toString(36).substring(2, 32) +
-    Math.random().toString(36).substring(2, 32)
+    Math.random().toString(36).substring(2, 7) +
+    Math.random().toString(36).substring(2, 7)
   );
 };
 
@@ -29,21 +29,6 @@ const percentage = (current, total) => {
   val = val.toFixed(1);
   val = val * 100;
   return val;
-};
-
-const SHA256 = (val) => {
-  const cipher = crypto.createHash("sha256", process.env.APP_SECRET, 24);
-  let encrypted = cipher.update(val, "utf8", "hex");
-  encrypted = encrypted.digest("hex");
-  encrypted = encrypted.substring(0, 59);
-  return encrypted;
-};
-
-const SHA512 = (val) => {
-  const cipher = crypto.createHash("sha512", process.env.APP_SECRET, 24);
-  let encrypted = cipher.update(val, "utf8", "hex");
-  encrypted = encrypted.digest("hex");
-  return encrypted;
 };
 
 const encrypt = (val) => {
@@ -72,8 +57,6 @@ module.exports = {
   code,
   guid,
   percentage,
-  SHA256,
-  SHA512,
   encrypt,
   decrypt,
   asyncForEach,

@@ -1,0 +1,11 @@
+::1 - - POST 400 /api/user/create - insomnia/2021.1.0 2.395 ms Thu, 11 Mar 2021 12:02:56 GMT
+::1 - - POST 200 /api/user/create - insomnia/2021.1.0 97.734 ms Thu, 11 Mar 2021 12:03:18 GMT
+::1 - - POST 200 /api/user/create - insomnia/2021.1.0 3.089 ms Thu, 11 Mar 2021 12:03:31 GMT
+::1 - - GET 200 /api/users?page=1&limit=50 - insomnia/2021.1.0 11.396 ms Thu, 11 Mar 2021 12:05:49 GMT
+::1 - - GET 200 /api/users?page=2&limit=50 - insomnia/2021.1.0 5.737 ms Thu, 11 Mar 2021 12:06:06 GMT
+::1 - - GET 200 /api/users?page=1&limit=50 - insomnia/2021.1.0 4.928 ms Thu, 11 Mar 2021 12:06:15 GMT
+::1 - - POST 200 /api/user/update - insomnia/2021.1.0 63.720 ms Thu, 11 Mar 2021 12:08:52 GMT
+::1 - - GET 200 /api/user/092ad211-9077-4912-bf0f-a5245c94e507 - insomnia/2021.1.0 7.471 ms Thu, 11 Mar 2021 12:11:18 GMT
+::1 - - GET 200 /api/user/search?page=1&limit=50&query=Jane - insomnia/2021.1.0 24.219 ms Thu, 11 Mar 2021 12:15:04 GMT
+::1 - - GET 200 /api/user/search?page=1&limit=50&query=Janet - insomnia/2021.1.0 1.853 ms Thu, 11 Mar 2021 12:15:11 GMT
+::1 - - GET 200 /api/user/search?page=1&limit=50&query=Jane - insomnia/2021.1.0 1.811 ms Thu, 11 Mar 2021 12:15:18 GMT

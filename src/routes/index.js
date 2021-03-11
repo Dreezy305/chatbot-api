@@ -3,14 +3,13 @@ const controllers = require("../controllers");
 
 const route = Router();
 
-//Wallet routes
-route.get("/api/wallet/:id", controllers.getWallet);
+//User routes
+route.post("/api/user/create", controllers.newUser);
+route.post("/api/user/update", controllers.updateUser);
+route.get("/api/users", controllers.getUsers);
+route.get("/api/user/search", controllers.searchUser);
+route.get("/api/user/:id", controllers.getUser);
 
-//Loan routes
-route.post("/api/loan/create", controllers.newLoan);
-route.post("/api/loan/update", controllers.updateLoan);
-route.post("/api/loan/easyfinance", controllers.easyLoan);
-route.get("/api/loans", controllers.getLoans);
-route.get("/api/loan/:id", controllers.getLoan);
+//Organisation routes
 
 module.exports = route;
