@@ -1,0 +1,41 @@
+{
+  "name": "chatbot-api",
+  "version": "1.0.0",
+  "description": "Chatbot API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js",
+    "start": "pm2 start ./src/index.js -n 'Chatbot API'",
+    "staging": "pm2 reload ./src/index.js -n 'Chatbot API' --update-env",
+    "production": "pm2 reload ./src/app.js -n 'Chatbot API' --update-env",
+    "start_db": "rethinkdb --bind all",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "author": "Olalekan Animashaun <kim.olalekan@gmail.com> (https://kimolalekan.github.io/)",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "cryptr": "^4.0.2",
+    "currency-formatter": "^1.5.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "moment": "^2.24.0",
+    "morgan": "^1.10.0",
+    "node-cron": "^2.0.3",
+    "node-fetch": "^2.6.1",
+    "serve-favicon": "^2.5.0",
+    "thinky": "^2.3.9"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "supertest": "^4.0.2"
+  }
+}
